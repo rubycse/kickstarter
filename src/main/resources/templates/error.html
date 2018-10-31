@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Error!</title>
+</head>
+
+<body>
+<h1>Error!</h1>
+<div class="error" th:switch="true">
+    <th:block th:case="${errorMsgKey != null}" th:text="#{${errorMsgKey}}" />
+    <th:block th:case="${errorMsg != null}" th:text="${errorMsg}" />
+    <th:block th:case="${error != null}" th:utext="${error + ', status = ' + status + '<br/>' + message}" />
+</div>
+</body>
+</html>

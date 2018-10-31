@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+
+<div th:fragment="textInput(field, labelCode, readonly)">
+    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <input th:type="text" th:field="*{__${field}__}" th:errorClass="error" th:readonly="${readonly}" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <br/>
+</div>
+
+<div th:fragment="passwordInput(field, labelCode)">
+    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <input th:type="password" th:field="*{__${field}__}" th:errorClass="error" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <br/>
+</div>
+
+<div th:fragment="dateInput(field, labelCode, readonly)">
+    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <input th:type="text" th:field="*{__${field}__}" th:errorClass="error" th:readonly="${readonly}"
+           th:placeholder="#{date.format.label}" th:maxlength="10" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <br/>
+</div>
+
+<div th:fragment="selectInput(field, labelCode, items, itemLabel, itemValue, readonly)">
+    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <select th:field="*{__${field}__}" th:errorClass="error" th:disabled="${readonly}">
+        <option th:value="''" th:text="#{'please.select.label'}" />
+        <option th:each="obj : ${items}"
+                th:value="${__${'obj' + (itemValue == null ? '' : '.' + itemValue)}__}"
+                th:text="${__${'obj' + '.' + itemLabel}__}">Male</option>
+    </select>
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <br/>
+</div>
+
+<div th:fragment="checkboxInput(field, labelCode, items, itemLabel, itemValue, readonly)">
+    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <li th:each="obj : ${items}">
+        <input type="checkbox" th:disabled="${readonly}" th:field="*{__${field}__}"
+               th:value="${__${'obj' + (itemValue == null ? '' : '.' + itemValue)}__}"/>
+        <label th:for="${#ids.prev(__${'''' + field + ''''}__)}"
+               th:text="${__${'obj' + '.' + itemLabel}__}" />
+    </li>
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <br/>
+</div>
+
+</body>
+</html>

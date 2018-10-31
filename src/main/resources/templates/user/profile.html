@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/kickstarter-1.0.css}" />
+</head>
+
+<body>
+<h1>Profile of <span sec:authentication="name"></span></h1>
+
+<form method="POST" th:action="@{/profiles}" th:object="${profile}" id="registerForm"
+      th:with="owner=${#authentication.name == profile.username}">
+
+    <th:block th:replace="form::textInput('username', null, ${!owner})" />
+    <th:block th:replace="form::textInput('firstName', null, ${!owner})" />
+    <th:block th:replace="form::textInput('lastName', null, ${!owner})" />
+    <th:block th:replace="form::dateInput('birthDate', null, ${!owner})" />
+    <th:block th:replace="form::selectInput('gender', null, ${genders}, 'displayName', null, ${!owner})" />
+    <th:block th:replace="form::textInput('email', null, ${!owner})" />
+    <th:block th:replace="form::textInput('phone', null, ${!owner})" />
+    <th:block th:replace="form::checkboxInput('roles', null, ${roles}, 'displayName', null,
+        ${!#authorization.expression('hasRole(''ROLE_ADMIN'')')})" />
+
+    <input type="submit" value="Update"/>
+</form>
+
+
+</body>
+</html>

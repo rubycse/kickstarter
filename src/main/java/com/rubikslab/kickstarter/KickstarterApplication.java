@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @Configuration
-@PropertySource(ignoreResourceNotFound = true, value = "file:${KICKSTARTER_PROP_LOC}")
+@PropertySource(value = "file:${KICKSTARTER_PROP_LOC}")
 public class KickstarterApplication {
 
 	public static void main(String[] args) {

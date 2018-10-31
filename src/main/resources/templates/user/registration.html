@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/kickstarter-1.0.css}" />
+</head>
+
+<body>
+<h1>Registration</h1>
+
+<form method="POST" th:action="@{/register}" th:object="${registration}" id="registerForm">
+
+    <th:block th:replace="form::textInput('username', null, false)" />
+    <th:block th:replace="form::passwordInput('password', null)" />
+    <th:block th:replace="form::passwordInput('confirmPassword', null)" />
+    <th:block th:replace="form::textInput('firstName', null, false)" />
+    <th:block th:replace="form::textInput('lastName', null, false)" />
+    <th:block th:replace="form::dateInput('birthDate', null, false)" />
+    <th:block th:replace="form::selectInput('gender', null, ${genders}, 'displayName', null, false)" />
+    <th:block th:replace="form::textInput('email', null, false)" />
+    <th:block th:replace="form::textInput('phone', null, false)" />
+
+    <input type="submit" value="Register"/>
+</form>
+
+
+</body>
+</html>
