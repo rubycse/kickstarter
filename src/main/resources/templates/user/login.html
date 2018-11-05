@@ -1,12 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 <head>
-    <title>Login</title>
     <link rel="stylesheet"type="text/css" th:href="@{/css/kickstarter-1.0.css}" />
 </head>
 <body onload='document.f.username.focus();'>
-<h1>Login</h1>
-<div id="content">
+<th:block layout:fragment="title">Login</th:block>
+<th:block layout:fragment="content">
     <div th:if="${param.error}" class="error">
         Invalid username and password.
     </div>
@@ -26,7 +27,7 @@
             </tr>
         </table>
     </form>
-</div>
+</th:block>
 <div id="footer"></div>
 </body>
 </html>
