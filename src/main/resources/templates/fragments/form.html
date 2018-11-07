@@ -6,50 +6,54 @@
 
 <body>
 
-<div th:fragment="textInput(field, labelCode, readonly)">
+<div th:fragment="textInput(field, labelCode, readonly)" class="form-group">
     <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
-    <input th:type="text" th:field="*{__${field}__}" th:errorClass="error" th:readonly="${readonly}" />
-    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <input class="form-control" th:type="text" th:field="*{__${field}__}" th:errorClass="is-invalid" th:readonly="${readonly}" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" class="invalid-feedback" />
     <br/>
 </div>
 
-<div th:fragment="passwordInput(field, labelCode)">
+<div th:fragment="passwordInput(field, labelCode)" class="form-group">
     <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
-    <input th:type="password" th:field="*{__${field}__}" th:errorClass="error" />
-    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <input th:type="password" th:field="*{__${field}__}" th:errorClass="is-invalid" class="form-control" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" class="invalid-feedback" />
     <br/>
 </div>
 
-<div th:fragment="dateInput(field, labelCode, readonly)">
+<div th:fragment="dateInput(field, labelCode, readonly)" class="form-group">
     <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
-    <input th:type="text" th:field="*{__${field}__}" th:errorClass="error" th:readonly="${readonly}"
-           th:placeholder="#{date.format.label}" th:maxlength="10" />
-    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <input th:type="text" th:field="*{__${field}__}" th:errorClass="is-invalid" th:readonly="${readonly}"
+           th:placeholder="#{date.format.label}" th:maxlength="10" class="form-control"/>
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" class="invalid-feedback" />
     <br/>
 </div>
 
-<div th:fragment="selectInput(field, labelCode, items, itemLabel, itemValue, readonly)">
+<div th:fragment="selectInput(field, labelCode, items, itemLabel, itemValue, readonly)" class="form-group">
     <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
-    <select th:field="*{__${field}__}" th:errorClass="error" th:disabled="${readonly}">
+    <select th:field="*{__${field}__}" th:errorClass="is-invalid" th:disabled="${readonly}" class="form-control">
         <option th:value="''" th:text="#{'please.select.label'}" />
         <option th:each="obj : ${items}"
                 th:value="${__${'obj' + (itemValue == null ? '' : '.' + itemValue)}__}"
                 th:text="${__${'obj' + '.' + itemLabel}__}">Male</option>
     </select>
-    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" class="invalid-feedback" />
     <br/>
 </div>
 
-<div th:fragment="checkboxInput(field, labelCode, items, itemLabel, itemValue, readonly)">
-    <label th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
-    <li th:each="obj : ${items}">
+<div th:fragment="checkboxInput(field, labelCode, items, itemLabel, itemValue, readonly)" class="form-group">
+    <legend class="col-form-label" th:for="${field}" th:text="#{__${labelCode == null ? field : labelCode}__.label}" />
+    <div class="form-check" th:each="obj : ${items}">
         <input type="checkbox" th:disabled="${readonly}" th:field="*{__${field}__}"
-               th:value="${__${'obj' + (itemValue == null ? '' : '.' + itemValue)}__}"/>
+               th:value="${__${'obj' + (itemValue == null ? '' : '.' + itemValue)}__}" class="form-check-input"/>
         <label th:for="${#ids.prev(__${'''' + field + ''''}__)}"
-               th:text="${__${'obj' + '.' + itemLabel}__}" />
-    </li>
-    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" />
+               th:text="${__${'obj' + '.' + itemLabel}__}" class="form-check-label" />
+    </div>
+    <span th:if="${#fields.hasErrors(__${'''' + field + ''''}__)}" th:errors="*{__${field}__}" class="invalid-feedback" />
     <br/>
+</div>
+
+<div th:fragment="button(name)">
+    <input type="submit" th:value="${name}" class="btn btn-secondary"/>
 </div>
 
 </body>

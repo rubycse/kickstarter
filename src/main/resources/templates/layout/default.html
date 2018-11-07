@@ -4,6 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title><th:block layout:fragment="title" /></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/bootstrap/4.0.0/css/bootstrap.min.css}" />
 </head>
 <body>
     <h1><th:block layout:fragment="title" /></h1>
@@ -11,5 +14,8 @@
         <div layout:fragment="content"></div>
         <div th:replace="fragments/footer :: footer"></div>
     </div>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/popper-1.14.3.min.js}"></script>
+    <script th:src="@{/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 </body>
 </html>

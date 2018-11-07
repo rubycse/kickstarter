@@ -8,24 +8,24 @@
 <body onload='document.f.username.focus();'>
 <th:block layout:fragment="title">Login</th:block>
 <th:block layout:fragment="content">
-    <div th:if="${param.error}" class="error">
-        Invalid username and password.
+    <div th:if="${param.error}" class="alert alert-danger">
+        Invalid username or password.
     </div>
     <form name='f' th:action='@{/login}' method='POST'>
 
-        <table>
-            <tr>
-                <td>User:</td>
-                <td><input type='text' name='username' value='' /></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type='password' name='password'/></td>
-            </tr>
-            <tr>
-                <td colspan='2'><input name="submit" type="submit" value="Login"/></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label th:for="username" th:text="#{username.label}" />
+            <input class="form-control" type="text" name="username" />
+            <br/>
+        </div>
+
+        <div class="form-group">
+            <label th:for="password" th:text="#{password.label}" />
+            <input class="form-control" type="password" name="password" />
+            <br/>
+        </div>
+
+        <th:block th:replace="fragments/form::button('Login')" />
     </form>
 </th:block>
 <div id="footer"></div>

@@ -25,9 +25,9 @@
         <th:block th:replace="fragments/form::textInput('email', null, ${!owner})" />
         <th:block th:replace="fragments/form::textInput('phone', null, ${!owner})" />
         <th:block th:replace="fragments/form::checkboxInput('roles', null, ${roles}, 'displayName', null,
-        ${!#authorization.expression('hasRole(''ROLE_ADMIN'')')})" />
+            ${!#authorization.expression('hasRole(''ROLE_ADMIN'')')})" />
 
-        <input type="submit" value="Update"/>
+        <th:block th:replace="fragments/form::button('Update')" />
     </form>
 </th:block>
 
