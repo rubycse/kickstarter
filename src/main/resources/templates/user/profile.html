@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default}">
 
@@ -17,7 +16,7 @@
     <form method="POST" th:action="@{/profiles}" th:object="${profile}" id="registerForm"
           th:with="owner=${#authentication.name == profile.username}">
 
-        <th:block th:replace="fragments/form::textInput('username', null, ${!owner})" />
+        <th:block th:replace="fragments/form::textInput('username', null, true)" />
         <th:block th:replace="fragments/form::textInput('firstName', null, ${!owner})" />
         <th:block th:replace="fragments/form::textInput('lastName', null, ${!owner})" />
         <th:block th:replace="fragments/form::dateInput('birthDate', null, ${!owner})" />

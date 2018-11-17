@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome <th:block sec:authentication="name" />!</title>
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
+<th:block layout:fragment="title">Welcome</th:block>
+<div layout:fragment="content">
+    Welcome, <span sec:authentication="name"></span>!
 </div>
-<div sec:authorize="isAnonymous()">
-    <a th:href="@{/login}">Login</a>
-    <a th:href="@{/register}">Register</a>
-</div>
-<h1>Welcome, <span sec:authentication="name"></span>!</h1>
 </body>
 </html>

@@ -47,7 +47,7 @@ public class ProfileController {
     private String[] getAllowedFields(User profile, User currentUser) {
         List<String> allowedFields = new ArrayList<>();
         if (currentUser.getId().equals(profile.getId())) {
-            allowedFields.addAll(Arrays.asList("firstName", "lastName", "birthDate", "gender", "phone"));
+            allowedFields.addAll(Arrays.asList("firstName", "lastName", "birthDate", "gender", "email", "phone"));
         }
         if (currentUser.getRoles().contains(Role.ROLE_ADMIN)) {
             allowedFields.add("roles");
